@@ -24,7 +24,7 @@ const movieDetails = async ({ params }: { params: IdParams }) => {
     const movie: MovieProp = await getMovieDetail(params.id);
     const movieCredits = await getMovieCredit(params.id)
     const reviews: ReviewProps[] = await getMovieReviews(params.id)
-    const { average_rating } = await getMovieAverageRating(params.id)
+    const { average_rating }: any = await getMovieAverageRating(params.id)
 
 
 
