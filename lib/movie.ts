@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
+const searchUrl = 'https://api.themoviedb.org/3/search/movie'
 const review_url = "https://reviewapi.onrender.com/api/reviews";
 const movie_detail_url = "https://api.themoviedb.org/3/movie/";
 const url = "https://api.themoviedb.org/3/discover/movie";
@@ -107,3 +108,11 @@ export const getMovieAverageRating = async (id: number) => {
     return { error };
   }
 };
+
+
+export const searchMovie = async(title: string) => {
+  const res = await fetch(`${searchUrl}?params=${title}`)
+  const movie = res.json()
+  console.log(movie)
+  return movie
+}

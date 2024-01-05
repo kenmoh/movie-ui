@@ -2,13 +2,15 @@
 import { MovieProp } from '@/types'
 import MovieCard from '@/components/MovieCard'
 import Link from 'next/link'
-import { getMovies } from '@/lib/movie'
+import { getMovies, searchMovie } from '@/lib/movie'
 import AppButton from '@/components/AppButton'
 import LoadMore from '@/components/LoadMore'
+import Barner from '@/components/Barner'
 
 export default async function Home() {
 
   const movies: MovieProp[] = await getMovies(1)
+  const movie = searchMovie('Silent Night')
 
   return (
 
@@ -25,6 +27,7 @@ export default async function Home() {
           ))
         }
       </main> */}
+      <Barner/>
       <LoadMore />
     </>
 
