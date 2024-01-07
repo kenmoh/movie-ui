@@ -4,7 +4,7 @@ import { useFormState } from "react-dom"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { addComment } from "@/lib/movie"
-import AppButton from "./AppButton";;
+import AppButton from "./AppButton";
 
 type MovieId = {
     movie_id: number

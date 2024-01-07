@@ -10,7 +10,8 @@ import Barner from '@/components/Barner'
 export default async function Home() {
 
   const movies: MovieProp[] = await getMovies(1)
-  const movie = searchMovie('Silent Night')
+  const movie: MovieProp = await searchMovie('fast x')
+  console.log(movie)
 
   return (
 

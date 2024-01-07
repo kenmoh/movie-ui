@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-const searchUrl = 'https://api.themoviedb.org/3/search/movie'
+const searchUrl = "https://api.themoviedb.org/3/search/movie";
 const review_url = "https://reviewapi.onrender.com/api/reviews";
 const movie_detail_url = "https://api.themoviedb.org/3/movie/";
 const url = "https://api.themoviedb.org/3/discover/movie";
@@ -19,7 +19,7 @@ export const getMovies = async (page: number) => {
     const movies = await res.json();
     return movies.results;
   } catch (error) {
-    console.log(error);
+    return { error };
   }
 };
 
@@ -29,7 +29,7 @@ export const getMovieDetail = async (movie_id: number) => {
     const movie = await res.json();
     return movie;
   } catch (error) {
-    console.log(error);
+    return { error };
   }
 };
 export const getMovieCredit = async (movie_id: number) => {
@@ -83,6 +83,7 @@ export async function addComment(prevData: any, data: FormData) {
     return {
       type: "error",
       message: "You can only review once!",
+      error,
     };
   } finally {
     // Revalidate the page after the fetch is complete
@@ -96,7 +97,9 @@ export const getMovieReviews = async (id: number) => {
     const data = res.json();
     return data;
   } catch (error) {
-    console.log("Error", error);
+    return {
+      error,
+    };
   }
 };
 
@@ -109,10 +112,13 @@ export const getMovieAverageRating = async (id: number) => {
   }
 };
 
+export const searchMovie = async (title: string) => {
+  try {
+    const res = await fetch(`${searchUrl}?query=${title}`, options);
+    const movie = res.json();
 
-export const searchMovie = async(title: string) => {
-  const res = await fetch(`${searchUrl}?params=${title}`)
-  const movie = res.json()
-  console.log(movie)
-  return movie
-}
+    return movie;
+  } catch (error) {
+    return { error };
+  }
+};
