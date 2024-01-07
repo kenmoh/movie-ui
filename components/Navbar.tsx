@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <header>
       <nav className="top-0 opacity-75 z-50 bg-black w-full px-8 flex justify-between items-center h-16 text-black dark:text-white fixed shadow-sm font-mono">
-        <Link href="/" className="text-white font-bold text-3xl">
+        <Link href="/" className="text-white font-bold text-3xl font-mono">
           MuchReview
         </Link>
         <div className="flex items-center gap-5 justify-between">

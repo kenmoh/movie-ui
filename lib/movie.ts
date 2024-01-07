@@ -105,8 +105,9 @@ export const getMovieReviews = async (id: number) => {
 
 export const getMovieAverageRating = async (id: number) => {
   try {
-    const data = await fetch(`${review_url}/average-rating/${id}`);
-    return data;
+    const res = await fetch(`${review_url}/average-rating/${id}`);
+    const rating = await res.json();
+    return rating;
   } catch (error) {
     return { error };
   }
