@@ -45,49 +45,6 @@ export const getNextPage = async (pageNumber: number) => {
   await fetch(`${movie_detail_url}/?page=${pageNumber}`, options);
 };
 
-export async function addComment(prevData: any, data: FormData) {
-  const author = data.get("author");
-  const comment = data.get("comment");
-  const rating = data.get("rating");
-  const movie_id = data.get("movie_id");
-
-  if (!author || !comment || !rating || !movie_id) {
-    return {
-      type: "error",
-      message: "All fields are required!",
-    };
-  }
-
-  const res = await fetch(
-    `https://reviewapi.onrender.com/api/reviews/${movie_id}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        movie_id,
-        author,
-        comment,
-        rating,
-      }),
-    }
-  );
-  if (res.status === 201) {
-    return {
-      type: "success",
-      message: "Review added successfully.",
-    };
-  }
-  if (res.status === 400) {
-    return {
-      type: "error",
-      message: "You already reviewed this movie.",
-    };
-  }
-}
-
-// Add review
 // export async function addComment(prevData: any, data: FormData) {
 //   const author = data.get("author");
 //   const comment = data.get("comment");
@@ -101,40 +58,91 @@ export async function addComment(prevData: any, data: FormData) {
 //     };
 //   }
 
-//   try {
-//     const res = await fetch(
-//       `https://reviewapi.onrender.com/api/reviews/${movie_id}`,
-//       {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           movie_id,
-//           author,
-//           comment,
-//           rating,
-//         }),
-//       }
-//     );
-//     // If the fetch is successful, return a success message
+//   const res = await fetch(
+//     `https://reviewapi.onrender.com/api/reviews/${movie_id}`,
+//     {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         movie_id,
+//         author,
+//         comment,
+//         rating,
+//       }),
+//     }
+//   );
+//   if (res.status === 201) {
 //     return {
 //       type: "success",
-//       message: "Review added successfully!",
+//       message: "Review added successfully.",
 //     };
-//   } catch (error) {
-//     // If the fetch is unsuccessful, return an error message
-//     console.log(error);
+//   }
+//   if (res.status === 400) {
 //     return {
 //       type: "error",
-//       message: "You can only review once!",
-//       error,
+//       message: "You already reviewed this movie.",
 //     };
-//   } finally {
-//     // Revalidate the page after the fetch is complete
-//     revalidatePath(`/movies/${movie_id}`);
 //   }
+//   revalidatePath(`/movies/${movie_id}`);
 // }
+
+// Add review
+export async function addComment(prevData: any, data: FormData) {
+  const author = data.get("author");
+  const comment = data.get("comment");
+  const rating = data.get("rating");
+  const movie_id = data.get("movie_id");
+
+  if (!author || !comment || !rating || !movie_id) {
+    return {
+      type: "error",
+      message: "All fields are required!",
+    };
+  }
+
+  try {
+    const res = await fetch(
+      `https://reviewapi.onrender.com/api/reviews/${movie_id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          movie_id,
+          author,
+          comment,
+          rating,
+        }),
+      }
+    );
+    // If the fetch is successful, return a success message
+    if (res.status === 201) {
+      return {
+        type: "success",
+        message: "Review added successfully.",
+      };
+    }
+    if (res.status === 400) {
+      return {
+        type: "error",
+        message: "You already reviewed this movie.",
+      };
+    }
+  } catch (error) {
+    // If the fetch is unsuccessful, return an error message
+    return {
+      type: "error",
+      message: "You can only review once!",
+      error,
+    };
+  } finally {
+    // Revalidate the page after the fetch is complete
+    revalidatePath(`/movies/${movie_id}`);
+  }
+}
 
 export const getMovieReviews = async (id: number) => {
   try {
