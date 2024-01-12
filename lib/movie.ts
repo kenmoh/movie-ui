@@ -6,6 +6,7 @@ const searchUrl = "https://api.themoviedb.org/3/search/movie";
 const review_url = "https://reviewapi.onrender.com/api/reviews";
 const movie_detail_url = "https://api.themoviedb.org/3/movie/";
 const url = "https://api.themoviedb.org/3/discover/movie";
+
 const options = {
   headers: {
     accept: "application/json",
@@ -13,7 +14,7 @@ const options = {
   },
 };
 
-export const getMovies = async (page: number) => {
+export const getMovies = async (page: number, title?: string) => {
   try {
     const res = await fetch(`${url}?page=${page}`, options);
     const movies = await res.json();
@@ -166,12 +167,15 @@ export const getMovieAverageRating = async (id: number) => {
   }
 };
 
-export const searchMovie = async (title: string) => {
+export const searchMovie = async (data: FormData) => {
+  const searctTitle = data.get("searctTitle");
+  console.log(searctTitle);
   try {
-    const res = await fetch(`${searchUrl}?query=${title}`, options);
-    const movie = res.json();
+    const res = await fetch(`${searchUrl}?query=${searctTitle}`, options);
+    const movies = res.json();
+    console.log(movies);
 
-    return movie;
+    return movies;
   } catch (error) {
     return { error };
   }

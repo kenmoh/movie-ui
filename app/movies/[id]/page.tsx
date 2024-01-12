@@ -17,6 +17,7 @@ import {
 } from "@/lib/movie";
 import Form from "@/components/Form";
 import { CiStar } from "react-icons/ci";
+import Overview from "@/components/Overview";
 
 type IdParams = {
   id: number;
@@ -30,6 +31,8 @@ const movieDetails = async ({ params }: { params: IdParams }) => {
   const movieCredits = await getMovieCredit(params.id);
   const reviews: ReviewProps[] = await getMovieReviews(params.id);
   const { average_rating }: any = await getMovieAverageRating(params.id);
+
+  console.log(movie);
 
   return (
     <div className="mx-auto w-full md:w-3/5 mt-[72px] mpx-3">
@@ -46,7 +49,8 @@ const movieDetails = async ({ params }: { params: IdParams }) => {
         average_rating={average_rating!}
         length={movie.runtime}
       />
-      <h1 className="text-xl uppercase mt-10 bold">Cast</h1>
+      <Overview overview={movie.overview} />
+      <h1 className="text-xl uppercase mt-10 font-bold">Cast</h1>
 
       <div className="flex flex-wrap gap-3 my-2">
         {movieCredits.cast
