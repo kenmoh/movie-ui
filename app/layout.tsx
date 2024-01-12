@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         <ToastContainer />
-        <div className='mx-auto mt-20'>
+        <div className='mx-auto '>
           {children}
         </div>
       </body>

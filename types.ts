@@ -35,4 +35,5 @@ export type MovieProp = {
   poster_path: string;
   release_date?: string;
   title: string;
+  runtime: number;
 };
