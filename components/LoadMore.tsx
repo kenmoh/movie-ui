@@ -23,7 +23,7 @@ const LoadMore = () => {
   }, [inView, movies]);
   return (
     <>
-      <section className="flex flex-wrap gap-5 justify-center items-center mt-5 w-full">
+      <section className="p-3  flex flex-wrap gap-5 justify-center items-center mt-5 w-full">
         {movies.map((move) => (
           <Link
             href={`/movies/${move.id}`}
