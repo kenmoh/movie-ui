@@ -32,10 +32,9 @@ const movieDetails = async ({ params }: { params: IdParams }) => {
   const reviews: ReviewProps[] = await getMovieReviews(params.id);
   const { average_rating }: any = await getMovieAverageRating(params.id);
 
-  console.log(movie);
 
   return (
-    <div className="mx-auto w-full md:w-3/5 mt-[72px] mpx-3">
+    <div className="mx-auto w-full md:w-3/5 mt-[72px] px-3">
       <div className="relative h-[500px] w-full rounded-md">
         <Image
           src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
