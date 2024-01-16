@@ -2,7 +2,7 @@ import React from 'react'
 
 const moviePage = () => {
     return (
-        <div>moviePage</div>
+        <div>moviePage Query</div>
     )
 }
 

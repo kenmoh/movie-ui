@@ -11,6 +11,7 @@ export type MoviePropType = {
   average_rating?: number;
   created_at?: string;
   reviews?: [];
+  index?: number;
 };
 
 export type ReviewProps = {

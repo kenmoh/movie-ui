@@ -1,28 +1,33 @@
 "use client";
 import { searchMovie } from "@/lib/movie";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { useFormState } from "react-dom";
 
 const SearchForm = () => {
+  const searchParams = useSearchParams();
   const [state, formAction] = useFormState(searchMovie, null);
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  function handleSearch(term: string) {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set('query', term);
+    } else {
+      params.delete('query');
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }
   return (
     <div>
-      <form action={formAction}>
-        <div className="bg-white rounded-full pl-5 mt-3">
-          <input
-            type="search"
-            name="searctTitle"
-            placeholder="search movie"
-            className="w-[75%] md:w-[90%] rounded-full p-2 focus:ring-0 focus:outline-none"
-          />
-          <button
-            type="submit"
-            className="w-[25%] md:w-[10%] bg-black rounded-full text-white p-2"
-          >
-            Search
-          </button>
-        </div>
-      </form>
+      <input
+        className="focus:outline-none peer block w-full rounded-full border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+        placeholder={'Search'}
+        onChange={(e) => {
+          handleSearch(e.target.value);
+        }}
+      />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 "use server";
-
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 const searchUrl = "https://api.themoviedb.org/3/search/movie";
@@ -14,7 +14,7 @@ const options = {
   },
 };
 
-export const getMovies = async (page: number, title?: string) => {
+export const getMovies = async (page: number) => {
   try {
     const res = await fetch(`${url}?page=${page}`, options);
     const movies = await res.json();
@@ -167,14 +167,12 @@ export const getMovieAverageRating = async (id: number) => {
   }
 };
 
-export const searchMovie = async (data: FormData) => {
-  const searctTitle = data.get("searctTitle");
-  console.log(searctTitle);
+export const searchMovie = async (searchTitle: string) => {
+  // const searchTitle = data?.get("searchTitle");
   try {
-    const res = await fetch(`${searchUrl}?query=${searctTitle}`, options);
-    const movies = res.json();
+    const res = await fetch(`${searchUrl}?query=${searchTitle}`, options);
+    const movies = await res.json();
     console.log(movies);
-
     return movies;
   } catch (error) {
     return { error };
