@@ -54,9 +54,10 @@ const LoadMore = () => {
         ))}
       </section>
       <section className="flex justify-center mt-4">
-        <div ref={ref}>
+        {!searchTitle && <div ref={ref}>
           <Image src="/spinner.gif" alt="spinner" width={56} height={56} />
         </div>
+        }
       </section>
     </>
   );
