@@ -32,7 +32,6 @@ const movieDetails = async ({ params }: { params: IdParams }) => {
   const reviews: ReviewProps[] = await getMovieReviews(params.id);
   const { average_rating }: any = await getMovieAverageRating(params.id);
 
-  console.log(movie);
 
   return (
     <div className="mx-auto w-full md:w-3/5 mt-[72px] px-3">

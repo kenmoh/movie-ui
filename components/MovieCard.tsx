@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { CiStar } from "react-icons/ci";
 import { motion } from "framer-motion";
 import { MoviePropType } from "@/types";
 
@@ -12,15 +11,16 @@ const variants = {
 const MovieCard = ({
   poster_path,
   title,
+  index
 }: // average_rating,
-MoviePropType) => {
+  MoviePropType) => {
   return (
     <motion.div
       variants={variants}
       initial="hidden"
       animate="visible"
       transition={{
-        delay: 1,
+        delay: index! * 0.25,
         ease: "easeInOut",
         duration: 0.5,
       }}
