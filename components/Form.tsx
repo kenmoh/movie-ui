@@ -34,7 +34,7 @@ const Form = ({ movie_id }: MovieId) => {
         />
         <Input type="text" placeholder="Full Name" name="author" />
       </div>
-      <Textarea placeholder="Comments" name="comment" />
+      <Textarea placeholder="Comment" name="comment" />
       <AppButton />
     </form>
   );
