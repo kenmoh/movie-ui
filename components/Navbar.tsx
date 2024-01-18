@@ -6,16 +6,16 @@ import { LuSunDim } from "react-icons/lu";
 
 const pageRoutes = [
   //   {
-  //     name: "Home",
-  //     href: "/",
-  //   },
-  //   {
   //     name: "Movies",
   //     href: "/movies",
   //   },
   {
     name: "About",
     href: "/about",
+  },
+  {
+    name: "Privacy Policy",
+    href: "/policy",
   },
 ];
 
