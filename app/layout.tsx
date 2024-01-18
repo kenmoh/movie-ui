@@ -21,7 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        meta name="google-adsense-account" content="ca-pub-4643996002315789"
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-4643996002315789"
+        ></meta>
       </head>
       <body className={inter.className}>
         <Navbar />
