@@ -14,13 +14,15 @@ const aboutPage = () => {
         that's why we've created a space where your reviews take center stage.
         Our Mission: To amplify your voices and create a hub where diverse
         opinions converge, shaping a vibrant tapestry of insights into the
-        worlds of movies, music, and books. What Sets Us Apart: 1.
-        User-Generated Reviews: Our platform thrives on the reviews, ratings,
-        and thoughts shared by you the real critics and enthusiasts. 2. Genre
-        Inclusivity: Whether you're into indie films, underground music, or
-        classic literature, MuchReview is the place to explore a wide array of
-        genres. 3. Community Connection: Connect with fellow reviewers, discuss
+        worlds of movies, music, and books. What Sets Us Apart:
+        <br /> 1. User-Generated Reviews: Our platform thrives on the reviews,
+        ratings, and thoughts shared by you the real critics and enthusiasts.
+        <br /> 2. Genre Inclusivity: Whether you're into indie films,
+        underground music, or classic literature, MuchReview is the place to
+        explore a wide array of genres.
+        <br /> 3. Community Connection: Connect with fellow reviewers, discuss
         your favorite works, and discover new gems recommended by our community.
+        <br />
         Get in Touch: Have a review you can't wait to share or want to join the
         conversation? Reach out to us at contact@muchreview.com.
       </p>

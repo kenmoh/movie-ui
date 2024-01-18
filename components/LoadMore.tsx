@@ -11,8 +11,8 @@ import { useSearchParams } from "next/navigation";
 let page = 1;
 
 const LoadMore = () => {
-  const searchParams = useSearchParams()
-  const searchTitle = searchParams.get('query')
+  const searchParams = useSearchParams();
+  const searchTitle = searchParams.get("query");
   const { ref, inView } = useInView();
   const [movies, setMovies] = useState<MovieProp[]>([]);
 
@@ -33,11 +33,10 @@ const LoadMore = () => {
       );
       setMovies(filteredMovies);
     }
-
   }, [inView, movies, searchTitle]);
   return (
     <>
-      <section className="flex flex-wrap gap-5 justify-center items-center mt-5 w-full">
+      <section className="flex flex-wrap gap-5 justify-center items-center mt-5 w-full md:w-3/4 mx-auto">
         {movies.map((move: MovieProp, index: number) => (
           <Link
             href={`/movies/${move.id}`}
@@ -54,10 +53,11 @@ const LoadMore = () => {
         ))}
       </section>
       <section className="flex justify-center mt-4">
-        {!searchTitle && <div ref={ref}>
-          <Image src="/spinner.gif" alt="spinner" width={56} height={56} />
-        </div>
-        }
+        {!searchTitle && (
+          <div ref={ref}>
+            <Image src="/spinner.gif" alt="spinner" width={56} height={56} />
+          </div>
+        )}
       </section>
     </>
   );
